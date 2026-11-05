@@ -5,6 +5,7 @@ on:
   push:
     tags:
       - "[0-9]*-*"
+workflow_dispatch:
 
 env:
   CI: "true"
@@ -19,7 +20,7 @@ env:
   RELEASE_DIR: app/build/outputs/apk/release
   STAGING_DIR: app/build/outputs/apk/all
   ASSET_DIR: app/build/outputs/apk/release-assets
-  ARTIFACT_PASSWORD: ${{ secrets.ARTIFACT_PASSWORD }}
+  ARTIFACT_PASSWORD: testartifact123
   RELEASE_TAG_RAW: ${{ github.ref_name }}
   TARGET_SOURCE_BRANCH: dev
   TARGET_MODULE_REPO: Xposed-Modules-Repo/io.github.aoguai.sesameag
@@ -120,12 +121,12 @@ jobs:
           VERSION_NAME: ${{ steps.meta.outputs.version_name }}
           VERSION_CODE: ${{ steps.meta.outputs.version_code }}
           XPOSED_TAG: ${{ steps.meta.outputs.xposed_tag }}
-          ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          OFFICIAL_SIGNING_CERT_SHA256: ${{ vars.OFFICIAL_SIGNING_CERT_SHA256 }}
-          TARGET_REPO_PAT: ${{ secrets.TARGET_REPO_PAT }}
+          ANDROID_SIGNING_KEY: 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
+          ANDROID_KEY_ALIAS: sesameag
+          ANDROID_KEYSTORE_PASSWORD: sesameag123
+          ANDROID_KEY_PASSWORD: sesameag123
+          OFFICIAL_SIGNING_CERT_SHA256: C003252D7CA1D9A9090DF5919BB50A7908DE42994C6E8010C0ED78B39E193ED6
+          TARGET_REPO_PAT: ghp_placeholder_token_not_needed_when_PUBLISH_TO_XPOSED_is_false
           PUBLISH_TO_XPOSED_REPO: ${{ env.PUBLISH_TO_XPOSED_REPO }}
         run: |
           set -euo pipefail
@@ -330,10 +331,10 @@ jobs:
         uses: ilharp/sign-android-release@v2
         with:
           releaseDir: ${{ env.STAGING_DIR }}
-          signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
-          keyAlias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          signingKey: 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
+          keyAlias: sesameag
+          keyStorePassword: sesameag123
+          keyPassword: sesameag123
           buildToolsVersion: ${{ env.ANDROID_BUILD_TOOLS }}
 
       - name: Verify Official APK Signatures
@@ -386,7 +387,7 @@ jobs:
         id: release_notes
         shell: bash
         env:
-          GITHUB_API_TOKEN: ${{ secrets.TARGET_REPO_PAT || github.token }}
+          GITHUB_API_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
           XPOSED_TAG: ${{ needs.preflight.outputs.xposed_tag }}
         run: |
@@ -656,7 +657,7 @@ jobs:
           name: ${{ needs.preflight.outputs.version_name }}
           files: |
             ${{ steps.prepare_assets.outputs.asset_dir }}/*
-          token: ${{ secrets.TARGET_REPO_PAT }}
+          token: ghp_placeholder_token_not_needed_when_PUBLISH_TO_XPOSED_is_false
           tag_name: ${{ needs.preflight.outputs.xposed_tag }}
           draft: false
           prerelease: false
